@@ -1,7 +1,8 @@
 export default class Validator {
-  // static toCombine(): string[] | null{
-
-  // }
+  static toCombine(...errors: (string | null)[]): string[] | null {
+    const errorsFiltered = errors.filter((error) => error !== null) as string[];
+    return errorsFiltered.length > 0 ? errorsFiltered : null;
+  }
 
   static noNullable(value: any, error: string): string | null {
     return value !== null && value !== undefined ? null : error;

@@ -35,3 +35,13 @@ test('should return null with text small than size max', () => {
   const error = Validator.isSmallerThan('Good Morning', 12, 'error');
   expect(error).toBe('error');
 });
+
+test('should to combine errors', () => {
+  const errors = Validator.toCombine(
+    Validator.noEmpty('teste', 'erro1'),
+    Validator.noEmpty('teste', 'erro2'),
+  );
+
+  console.log(errors);
+  expect(errors).toBeNull();
+});
