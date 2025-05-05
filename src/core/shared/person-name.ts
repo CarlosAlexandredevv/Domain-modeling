@@ -7,6 +7,10 @@ export default class PersonName {
   constructor(name: string) {
     this.name = name.trim();
 
-    Validator.noEmpty(this.name, Errors.EMPTY_NAME);
+    const errors = Validator.toCombine(
+      Validator.noEmpty(this.name, Errors.EMPTY_NAME),
+    );
+
+    if (errors) throw new Error(errors.join(', '));
   }
 }
